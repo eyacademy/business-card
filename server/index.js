@@ -49,6 +49,16 @@ app.get('/api/health', (req, res) => {
   res.type('text/plain').send('ok');
 });
 
+// Alias for Render settings if Health Check Path is /healthz
+app.get('/healthz', (req, res) => {
+  res.set('Cache-Control', 'no-store');
+  res.type('text/plain').send('ok');
+});
+app.head('/healthz', (req, res) => {
+  res.set('Cache-Control', 'no-store');
+  res.status(200).end();
+});
+
 // Render.com expects a port from env
 const PORT = process.env.PORT || 10000;
 app.listen(PORT, () => {
