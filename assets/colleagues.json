@@ -1,0 +1,38 @@
+[
+  {
+    "id": "Kamilya",
+    "name": "Kamilya Syzdykova",
+    "position": "Senior Manager",
+    "department": "Trainer consultant",
+    "phone": "+7 701 111 7972",
+    "email": "kamilya.syzdykova@kz.ey.com",
+    "address": "77/7, Al-Farabi Ave., Almaty 050040, Kazakhstan",
+    "company": "Ernst & Young Kazakhstan LLP",
+    "website": "https://eyacademycca.com/",
+  "avatar": "assets/avatars/Kamilya Syzdykova.png"
+  },
+  {
+    "id": "petrova",
+    "name": "Анна Петрова",
+    "position": "Маркетолог",
+    "department": "Маркетинг",
+    "phone": "+7 (999) 444-55-66",
+    "email": "petrova@example.com",
+    "address": "Санкт-Петербург, Невский пр., 25",
+    "company": "ООО \"Компания\"",
+    "website": "https://example.com",
+  "avatar": "assets/avatars/petrova.jpg"
+  },
+  {
+    "id": "sidorov",
+    "name": "Павел Сидоров",
+    "position": "Аналитик",
+    "department": "Бизнес-аналитика",
+    "phone": "+7 (999) 777-88-99",
+    "email": "sidorov@example.com",
+    "address": "Екатеринбург, пр. Ленина, 3",
+    "company": "ООО \"Компания\"",
+    "website": "https://example.com",
+  "avatar": "assets/avatars/sidorov.jpg"
+  }
+]

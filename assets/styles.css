@@ -1,0 +1,157 @@
+* { box-sizing: border-box; }
+/* Подключение фирменного шрифта EY Interstate */
+@font-face {
+  font-family: 'EYInterstate';
+  src: url('../fonts/EYINTERSTATE-LIGHT.OTF') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'EYInterstate';
+  src: url('../fonts/EYINTERSTATE-LIGHTITALIC.OTF') format('opentype');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'EYInterstate';
+  src: url('../fonts/EYINTERSTATE-REGULAR.OTF') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'EYInterstate';
+  src: url('../fonts/EYINTERSTATE-ITALIC.OTF') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'EYInterstate';
+  src: url('../fonts/EYINTERSTATE-BOLD.OTF') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'EYInterstate';
+  src: url('../fonts/EYINTERSTATE-BOLDITALIC.OTF') format('opentype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+:root {
+  /* Фирменные цвета EY */
+  --bg: #2E2E38;       /* тёмный фон */
+  --card: #282833;     /* фон карточек */
+  --muted: #BFC3CC;    /* вторичный текст */
+  --text: #F5F6F8;     /* основной текст */
+  --primary: #188CE5;  /* акцент синий */
+  --accent: #FFE600;   /* акцент жёлтый */
+  --border: #3A3A46;   /* границы на тёмном */
+  --qr-dark: #000000;  /* тёмные модули QR (чёрный для контраста) */
+  --qr-light: #ffffff; /* фон QR на сайте — белый */
+  --qr-logo-ratio: 0.22; /* доля ширины QR, занимаемая логотипом */
+  --qr-border-width: 2px; /* толщина жёлтой рамки вокруг QR */
+  --qr-padding: 10px;     /* внутренний отступ (белая окантовка) */
+}
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: 'EYInterstate', 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+.container { max-width: 1100px; margin: 0 auto; padding: 20px; }
+header h1 { margin: 10px 0 12px; font-size: 28px; position: relative; }
+header h1::after {
+  content: "";
+  position: absolute; left: 0; bottom: -6px;
+  width: 48px; height: 4px; border-radius: 2px; background: var(--accent);
+}
+.search-wrap { position: sticky; top: 0; background: transparent; padding: 8px 0 12px; z-index: 5; }
+.search-wrap input {
+  width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid var(--border);
+  background: #262630; color: var(--text); outline: none;
+}
+.search-wrap input::placeholder { color: #9aa0aa; }
+
+.grid {
+  display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px; align-items: stretch;
+}
+@media (max-width: 640px) { .grid { grid-template-columns: repeat(6, 1fr); } }
+@media (min-width: 641px) and (max-width: 1024px) { .grid { grid-template-columns: repeat(9, 1fr); } }
+
+.card {
+  grid-column: span 6; /* 2 в ряд на мобиле */
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)), var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px; padding: 14px; cursor: pointer;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  transition: transform 120ms ease, box-shadow 120ms ease, border-color 120ms ease;
+}
+.card:hover, .card:focus {
+  transform: translateY(-2px);
+  border-color: rgba(24,140,229,0.6);
+  box-shadow: 0 16px 36px rgba(0,0,0,0.35);
+}
+@media (min-width: 641px) { .card { grid-column: span 4; } } /* 3 в ряд на планшете */
+@media (min-width: 1025px) { .card { grid-column: span 3; } } /* 4 в ряд на десктопе */
+
+.card-head { display: flex; gap: 12px; align-items: center; }
+.avatar { width: 56px; height: 56px; border-radius: 12px; object-fit: cover; background: #1f2a44; }
+.name { margin: 0 0 2px; font-size: 18px; line-height: 1.2; }
+.position, .dept { color: var(--muted); font-size: 13px; }
+.card-body { margin-top: 10px; font-size: 14px; color: #E1E4EA; }
+.contact { margin-top: 6px; }
+.label { color: var(--muted); margin-right: 4px; }
+
+.modal { position: fixed; inset: 0; display: none; }
+.modal.show { display: block; }
+.modal-backdrop { position: absolute; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(2px); }
+.modal-content {
+  position: absolute; inset: 50% auto auto 50%; transform: translate(-50%, -50%);
+  width: min(900px, calc(100% - 24px)); background: #262630; border: 1px solid var(--border);
+  border-radius: 16px; padding: 16px;
+}
+.modal-main { display: grid; grid-template-columns: 1fr; gap: 16px; }
+@media (min-width: 840px) { .modal-main { grid-template-columns: 1.2fr 1fr; } }
+.icon-btn {
+  position: absolute; top: 8px; right: 8px; background: transparent; color: var(--muted);
+  border: 1px solid transparent; border-radius: 8px; padding: 6px 9px; cursor: pointer; font-size: 16px;
+}
+.icon-btn:hover { color: var(--text); border-color: var(--border); }
+.muted { color: var(--muted); }
+.qr-wrap { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+#qrcode {
+  background: #ffffff; /* белый фон на странице */
+  padding: var(--qr-padding);
+  border-radius: 14px;
+  border: var(--qr-border-width) solid var(--accent);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+  position: relative;
+  overflow: hidden;
+}
+
+.qr-logo-bg {
+  position: absolute; inset: 0; margin: auto;
+  background: #ffffff; border-radius: 12px; z-index: 2;
+  width: 0; height: 0; /* размеры задаются из JS */
+}
+.qr-logo-overlay {
+  position: absolute; inset: 0; margin: auto;
+  z-index: 3; width: 0; height: 0; object-fit: contain; border-radius: 8px;
+}
+.qr-hint { color: var(--muted); font-size: 12px; }
+.btn-row { display: flex; gap: 10px; justify-content: center; }
+.primary {
+  background: var(--primary); color: #ffffff; border: none; border-radius: 10px; padding: 10px 14px; cursor: pointer;
+  box-shadow: 0 2px 0 0 var(--accent) inset;
+}
+.primary:hover { filter: brightness(1.05); }
+
+a { color: var(--primary); text-decoration: none; }
+a:hover { text-decoration: underline; }

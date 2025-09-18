@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Визитка</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <main class="container">
+    <a href="index.html" class="muted">← Назад к списку</a>
+    <section class="card" style="max-width: 820px; margin: 16px auto; cursor: default;">
+      <div class="card-head">
+        <img id="avatar" class="avatar" alt="Аватар" />
+        <div>
+          <h1 id="name" class="name" style="font-size:24px; margin:0 0 4px;"></h1>
+          <div id="position" class="position"></div>
+          <div id="department" class="dept"></div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="contact"><span class="label">Компания:</span> <span id="company"></span></div>
+        <div class="contact"><span class="label">Тел.:</span> <span id="phone"></span></div>
+        <div class="contact"><span class="label">Email:</span> <span id="email"></span></div>
+        <div class="contact"><span class="label">Адрес:</span> <span id="address"></span></div>
+        <div class="contact"><span class="label">Сайт:</span> <a id="website" target="_blank" rel="noopener"></a></div>
+      </div>
+      <div class="qr-wrap" style="margin-top:16px;">
+        <div id="qrcode"></div>
+        <div class="qr-hint">Сканируйте QR, чтобы добавить контакт</div>
+      </div>
+      <div class="btn-row" style="margin-top:16px;">
+        <button id="downloadVcf" class="primary">Скачать визитку (.vcf)</button>
+        <button id="downloadPngTransparent" class="primary" style="background:#2E2E38; color:#F5F6F8; border:1px solid #3A3A46;">Скачать QR (PNG)</button>
+        <button id="editBtn" class="primary" style="background:#188CE5;">Редактировать</button>
+      </div>
+
+      <section id="editFormSection" class="card" style="display:none; margin-top:16px;">
+        <h3 style="margin-top:0;">Редактирование визитки</h3>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+          <label>Имя <input id="f_name" type="text" style="width:100%" /></label>
+          <label>Должность <input id="f_position" type="text" style="width:100%" /></label>
+          <label>Отдел <input id="f_department" type="text" style="width:100%" /></label>
+          <label>Телефон <input id="f_phone" type="text" style="width:100%" placeholder="например: - чтобы скрыть" /></label>
+          <label>Email <input id="f_email" type="email" style="width:100%" /></label>
+          <label>Адрес <input id="f_address" type="text" style="width:100%" /></label>
+          <label>Компания <input id="f_company" type="text" style="width:100%" /></label>
+          <label>Сайт <input id="f_website" type="url" style="width:100%" /></label>
+          <label style="grid-column:1 / -1;">Аватар (URL или относительный путь)
+            <input id="f_avatar" type="text" style="width:100%" />
+          </label>
+        </div>
+        <div class="btn-row" style="margin-top:12px;">
+          <button id="saveBtn" class="primary">Сохранить</button>
+          <button id="cancelBtn" class="primary" style="background:#2E2E38; color:#F5F6F8; border:1px solid #3A3A46;">Отмена</button>
+          <button id="resetBtn" class="primary" style="background:#b00020;">Сбросить правки</button>
+        </div>
+        <div class="qr-hint">Данные сохраняются только у вас в браузере (localStorage).</div>
+      </section>
+    </section>
+  </main>
+
+  <script src="assets/card.js"></script>
+</body>
+</html>
