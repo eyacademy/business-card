@@ -35,6 +35,20 @@ app.get('/api/colleagues/:id', (req, res) => {
   res.json(hit);
 });
 
+// Simple health endpoints for uptime checks (Render/UptimeRobot/etc.)
+app.get('/health', (req, res) => {
+  res.set('Cache-Control', 'no-store');
+  res.type('text/plain').send('ok');
+});
+app.head('/health', (req, res) => {
+  res.set('Cache-Control', 'no-store');
+  res.status(200).end();
+});
+app.get('/api/health', (req, res) => {
+  res.set('Cache-Control', 'no-store');
+  res.type('text/plain').send('ok');
+});
+
 // Render.com expects a port from env
 const PORT = process.env.PORT || 10000;
 app.listen(PORT, () => {
