@@ -490,23 +490,26 @@ function init(){
                     const textX = Math.round(outW/2);
                     let textY = qrBox.y + qrBox.h + Math.round(22*scale);
 
-                    // Для варианта EY Academy — строка над именем
                     if (isEYAcademyVariant) {
+                      // Для Kamilya: сначала ФИО, затем "EY Academy of Business", должность не пишем
+                      ctx.fillStyle = '#111827';
+                      ctx.font = `${Math.round(18*scale)}px EYInterstate, Inter, Arial`;
+                      ctx.fillText(name, textX, textY);
+                      textY += Math.round(22*scale);
+
                       ctx.fillStyle = '#374151';
                       ctx.font = `${Math.round(16*scale)}px EYInterstate, Inter, Arial`;
                       ctx.fillText('EY Academy of Business', textX, textY);
+                    } else {
+                      // По умолчанию: имя, затем должность
+                      ctx.fillStyle = '#111827';
+                      ctx.font = `${Math.round(18*scale)}px EYInterstate, Inter, Arial`;
+                      ctx.fillText(name, textX, textY);
+                      ctx.fillStyle = '#4B5563';
+                      ctx.font = `${Math.round(14*scale)}px EYInterstate, Inter, Arial`;
                       textY += Math.round(22*scale);
+                      ctx.fillText(title, textX, textY);
                     }
-
-                    // Имя
-                    ctx.fillStyle = '#111827';
-                    ctx.font = `${Math.round(18*scale)}px EYInterstate, Inter, Arial`;
-                    ctx.fillText(name, textX, textY);
-                    // Должность
-                    ctx.fillStyle = '#4B5563';
-                    ctx.font = `${Math.round(14*scale)}px EYInterstate, Inter, Arial`;
-                    textY += Math.round(22*scale);
-                    ctx.fillText(title, textX, textY);
 
                     // Скачиваем PNG
                     const link = document.createElement('a');
@@ -525,18 +528,24 @@ function init(){
                     const textX = Math.round(outW/2);
                     let textY = qrBox.y + qrBox.h + Math.round(22*scale);
                     if (isEYAcademyVariant) {
+                      // Для Kamilya: сначала ФИО, затем "EY Academy of Business", должность не пишем
+                      ctx.fillStyle = '#111827';
+                      ctx.font = `${Math.round(18*scale)}px EYInterstate, Inter, Arial`;
+                      ctx.fillText(name, textX, textY);
+                      textY += Math.round(22*scale);
+
                       ctx.fillStyle = '#374151';
                       ctx.font = `${Math.round(16*scale)}px EYInterstate, Inter, Arial`;
                       ctx.fillText('EY Academy of Business', textX, textY);
+                    } else {
+                      ctx.fillStyle = '#111827';
+                      ctx.font = `${Math.round(18*scale)}px EYInterstate, Inter, Arial`;
+                      ctx.fillText(name, textX, textY);
+                      ctx.fillStyle = '#4B5563';
+                      ctx.font = `${Math.round(14*scale)}px EYInterstate, Inter, Arial`;
                       textY += Math.round(22*scale);
+                      ctx.fillText(title, textX, textY);
                     }
-                    ctx.fillStyle = '#111827';
-                    ctx.font = `${Math.round(18*scale)}px EYInterstate, Inter, Arial`;
-                    ctx.fillText(name, textX, textY);
-                    ctx.fillStyle = '#4B5563';
-                    ctx.font = `${Math.round(14*scale)}px EYInterstate, Inter, Arial`;
-                    textY += Math.round(22*scale);
-                    ctx.fillText(title, textX, textY);
 
                     const link = document.createElement('a');
                     link.download = `${(person.name || 'qr').replace(/\s+/g,'_')}.png`;
